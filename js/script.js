@@ -113,4 +113,48 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setClock('.timer', diedLine);
 
+  // <{<{<{<{<{<{<{<{<{<{<{<    Modal window    >}>}>}>}>}>}>}>}>}>}>}>
+
+  const modalTrigger = document.querySelectorAll('[data-modal]'),
+        modal = document.querySelector('.modal'),
+        modalCloseBtn = document.querySelector('[data-close]');
+
+  modalTrigger.forEach(el => {
+    el.addEventListener('click', () => {
+      modal.classList.add('show');
+      modal.classList.remove('hide');
+      /**
+       * make not scrolling background
+       */
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+      modal.classList.remove('show');
+      modal.classList.add('hide');
+      /**
+       * make scrolling background
+       */
+      document.body.style.overflow = '';
+  }
+
+  modalCloseBtn.addEventListener('click', closeModal);
+
+  /**
+   * make close modal by click out modal window 
+   */
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  })
+
+  /**
+   * close modal by key Escape
+   */
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape' && modal.classList.contains('show')) {
+      closeModal();
+    }
+  })
+
 });
