@@ -118,18 +118,30 @@ window.addEventListener('DOMContentLoaded', () => {
   const modalTrigger = document.querySelectorAll('[data-modal]'),
         modal = document.querySelector('.modal'),
         modalCloseBtn = document.querySelector('[data-close]');
+        
 
+/**
+ * function
+ * open modal
+ */      
+  function openModal(){
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
+  }
+
+  /**
+   * adding listeners on each buttons
+   */
   modalTrigger.forEach(el => {
-    el.addEventListener('click', () => {
-      modal.classList.add('show');
-      modal.classList.remove('hide');
-      /**
-       * make not scrolling background
-       */
-      document.body.style.overflow = 'hidden';
-    });
+    el.addEventListener('click', openModal);
   });
 
+  /**
+   * function
+   * close modal
+   */
   function closeModal() {
       modal.classList.remove('show');
       modal.classList.add('hide');
@@ -156,5 +168,23 @@ window.addEventListener('DOMContentLoaded', () => {
       closeModal();
     }
   })
+
+  /**
+   * function
+   * once show modal after 5s after load page
+   */
+  const modalTimerId = setTimeout(openModal, 5000);
+
+  /**
+   * function
+   * once show modal in the end of scroll
+   */
+  function showModalByScroll(){
+    if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+      openModal();
+        window.removeEventListener('scroll', showModalByScroll)
+    }
+  }
+  window.addEventListener('scroll', showModalByScroll);
 
 });
