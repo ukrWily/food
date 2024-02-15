@@ -1,5 +1,5 @@
 // <{<{<{<{<{<{<{<{<{<{<{<    Parser    >}>}>}>}>}>}>}>}>}>}>}>
-// <{<{<{<{<{<{<{<{<{<{<{<    for insert take without - window.addEventListener('DOMContentLoaded', () => {    >}>}>}>}>}>}>}>}>}>}>}>
+//todo:  for insert take without - window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function recursy(element) {
     element.childNodes.forEach(node => {
 
-      if (node.nodeName.match(/^H\d/)) {        // string starts(^) with big letter(H) than(\) go number(d) 
+      if (node.nodeName.match(/^H\d/)) {        //todo: string starts(^) with big letter(H) than(\) go number(d) 
         const obj = {
           header: node.nodeName,
           content: node.textContent.trim()
@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
   }
-
   recursy(body);
   
   
