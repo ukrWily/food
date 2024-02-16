@@ -81,7 +81,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
         function updateClock() {
             const t = getTimeRemaining(endtime);
-            console.log(t.total <= 0);
 
             days.innerHTML = getZero(t.days);
             hours.innerHTML = getZero(t.hours);
@@ -184,7 +183,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-        const getResourse = async (url) => {
+        const getResource = async (url) => {
         const res = await fetch(url);
 
         if (!res.ok) {
@@ -194,9 +193,18 @@ window.addEventListener('DOMContentLoaded', function() {
         return await res.json();
     };
 
-    getResourse('http://localhost:3000/menu')
+    // <{<{<{<{<{<{<{<{<{<{<{<    without axios    >}>}>}>}>}>}>}>}>}>}>}>
+    
+    // getResource('http://localhost:3000/menu')
+    //     .then(data => {
+    //         data.forEach(({img, altimg, title, descr, price}) => {
+    //             new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+    //         });
+    //     })
+
+    axios.get('http://localhost:3000/menu')
         .then(data => {
-            data.forEach(({img, altimg, title, descr, price}) => {
+            data.data.forEach(({img, altimg, title, descr, price}) => {
                 new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
             });
         })
