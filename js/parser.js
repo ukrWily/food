@@ -1,5 +1,5 @@
 // <{<{<{<{<{<{<{<{<{<{<{<    Parser    >}>}>}>}>}>}>}>}>}>}>}>
-//todo:  for insert take without - window.addEventListener('DOMContentLoaded', () => {
+//todo:  for insert to page's devtools - take without - window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 

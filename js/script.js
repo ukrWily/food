@@ -289,9 +289,14 @@ window.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     }
 
-    fetch('http://localhost:3000/menu')
-        .then(data => data.json())
-        .then(res => console.log(res))
+    // <{<{<{<{<{<{<{<{<{<{<{<    Slider    >}>}>}>}>}>}>}>}>}>}>}>
+
+    const slides = document.querySelectorAll('.offer__slide'),
+        prev = document.querySelector('.offer__slider-prev'),
+        next = document.querySelector('.offer__slider-next');
+    let slideIndex = 1;
+
+    function
 
 });
 
