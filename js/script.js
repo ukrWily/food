@@ -292,6 +292,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // <{<{<{<{<{<{<{<{<{<{<{<    Slider   >}>}>}>}>}>}>}>}>}>}>}>
 
     const slides = document.querySelectorAll('.offer__slide'),
+        slider = document.querySelector('.offer__slider'),
         prev = document.querySelector('.offer__slider-prev'),
         next = document.querySelector('.offer__slider-next'),
         total = document.querySelector('#total'),      // total counter
@@ -319,6 +320,28 @@ window.addEventListener('DOMContentLoaded', function() {
     slides.forEach(slide => {
         slide.style.width = width;
     });
+
+    slider.style.position = 'relative';
+
+    const indicators = document.createElement('ol');
+    indicators.classList.add('carousel-indicators');
+    indicators.style.cssText = `
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 15;
+        display: flex;
+        justify-content: center;
+        margin-right: 15%;
+        margin-left: 15%;
+        list-style: none;
+    `;
+    slider.append(indicators);
+
+    for (let i = 0; i < slides.length; i++) {
+        
+    }
 
     next.addEventListener('click', () => {
         if (offset == parseInt(width) * (slides.length - 1)) {
