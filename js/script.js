@@ -438,7 +438,28 @@ window.addEventListener('DOMContentLoaded', function() {
     // <{<{<{<{<{<{<{<{<{<{<{<    Calc    >}>}>}>}>}>}>}>}>}>}>}>
 
     const result = document.querySelector('.calculating__result span');
-    let sex = 'female', height, weight, age, ratio = 1.375;
+
+    let sex, height, weight, age, ratio;
+
+    if (localStorage.getItem('sex')) {
+        sex = (localStorage.getItem('sex'));
+    } else {
+        sex = 'female';
+        localStorage.setItem('sex', 'female');
+    }
+
+    if (localStorage.getItem('ratio')) {
+        ratio = (localStorage.getItem('ratio'));
+    } else {
+        ratio = 1.375;
+        localStorage.setItem('ratio', 1.375);
+    }
+
+    function initLocalSettings(selector, activeClass) {
+        const elements = document.querySelectorAll(selector);
+
+        
+    }
 
     function calcTotal(){
         if (!sex || !height || !weight || !age || !ratio) {
@@ -462,8 +483,10 @@ window.addEventListener('DOMContentLoaded', function() {
             elem.addEventListener('click', (e) => {
             if (e.target.getAttribute('data-ratio')) {
                 ratio = +e.target.getAttribute('data-ratio');
+                localStorage.setItem('ratio', +e.target.getAttribute('data-ratio'));
             } else {
                 sex = e.target.getAttribute('id');
+                localStorage.setItem('sex', e.target.getAttribute('id'));
             }
 
             elements.forEach(elem => {
@@ -484,6 +507,18 @@ window.addEventListener('DOMContentLoaded', function() {
         const input = document.querySelector(selector);
 
         input.addEventListener('input', () => {
+
+            if (input.value.match(/\D/g)) {
+                input.style.border = '2px solid red';
+                input.value = 'Only digit!!!',
+                setTimeout(()=> {
+                    input.value = '';
+                    input.style.border = 'none';
+                }, 1000);
+            } else {
+                input.style.border = 'none';
+            }
+
             switch (input.getAttribute('id')) {
                 case 'height':
                     height = +input.value;
