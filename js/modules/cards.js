@@ -75,4 +75,4 @@ data.forEach(({ img, altimg, title, descr, price }) => {
   //       })
 }
 
-module.exports = cards;
+export default cards;
